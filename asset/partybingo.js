@@ -4,6 +4,7 @@
 	var resetButton = $('#reset-button');
 	var historiesDiv = $('#histories');
 	var drumAudio = $('#drum').get(0);
+	var cymbalAudio = $('#cymbal').get(0);
 	
 	// init histories
 	var toBingoString = function(n){
@@ -93,10 +94,13 @@
 		pingoNumber.text(toBingoString(n));
 		addHistory(n);
 		drumAudio.pause();
+		cymbalAudio.currentTime = 0;
+		cymbalAudio.play();
 	};
 	var start = function(){
 		isStarted = true;
 		startButton.text('Stop');
+		cymbalAudio.pause();
 		drumAudio.currentTime = 0; 
 		drumAudio.play();
 		rourletto();
@@ -118,6 +122,7 @@
 			pingoNumber.text('00');
 			historiesDiv.empty();
 			drumAudio.pause();
+			cymbalAudio.pause();
 			startButton.focus();
 		}
 	};
